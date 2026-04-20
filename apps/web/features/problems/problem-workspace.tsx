@@ -110,7 +110,7 @@ export function ProblemWorkspace({ problem }: Props): JSX.Element {
   };
 
   return (
-    <div className="grid gap-4 lg:grid-cols-2">
+    <div className="flex flex-col gap-4">
       <Card className="flex flex-col">
         <CardHeader className="flex-row items-center justify-between space-y-0 pb-3">
           <div>
@@ -140,7 +140,7 @@ export function ProblemWorkspace({ problem }: Props): JSX.Element {
             onChange={setCode}
             fontSize={fontSize}
             wordWrap={wordWrap}
-            height="420px"
+            height="560px"
           />
           <div className="flex flex-wrap gap-2">
             <Button onClick={handleRun} disabled={isRunning} variant="outline">
@@ -163,52 +163,23 @@ export function ProblemWorkspace({ problem }: Props): JSX.Element {
         </CardContent>
       </Card>
 
-      <div className="flex flex-col gap-4">
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg">Custom input</CardTitle>
-            <CardDescription>Piped to your program on stdin.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Textarea
-              className="h-32 font-mono text-xs"
-              value={stdin}
-              onChange={(e) => setStdin(e.target.value)}
-              placeholder="Type or paste input here…"
-            />
-          </CardContent>
-        </Card>
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-lg">Custom input</CardTitle>
+          <CardDescription>Piped to your program on stdin.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Textarea
+            className="h-32 font-mono text-xs"
+            value={stdin}
+            onChange={(e) => setStdin(e.target.value)}
+            placeholder="Type or paste input here…"
+          />
+        </CardContent>
+      </Card>
 
-        {runOutput ? <RunOutputCard output={runOutput} /> : null}
-        {submission ? <SubmissionCard submission={submission} /> : null}
-
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg">Sample test cases</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {problem.sampleTestCases.map((sample, i) => (
-              <div key={sample.id} className="rounded-md border bg-muted/30 p-3 text-xs">
-                <p className="mb-1 font-medium">Sample {i + 1}</p>
-                <div className="grid gap-2 md:grid-cols-2">
-                  <pre className="whitespace-pre-wrap rounded bg-background p-2 font-mono">
-                    <span className="block text-[10px] uppercase text-muted-foreground">
-                      Input
-                    </span>
-                    {sample.input || '(empty)'}
-                  </pre>
-                  <pre className="whitespace-pre-wrap rounded bg-background p-2 font-mono">
-                    <span className="block text-[10px] uppercase text-muted-foreground">
-                      Expected
-                    </span>
-                    {sample.expectedOutput}
-                  </pre>
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
+      {runOutput ? <RunOutputCard output={runOutput} /> : null}
+      {submission ? <SubmissionCard submission={submission} /> : null}
     </div>
   );
 }

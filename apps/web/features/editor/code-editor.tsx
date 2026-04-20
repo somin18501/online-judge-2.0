@@ -1,10 +1,10 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import { useTheme } from 'next-themes';
-import { Language } from '@au/types';
-import { MONACO_LANGUAGE_ID } from './starter-code';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Language } from '@au/types';
+import { useTheme } from 'next-themes';
+import dynamic from 'next/dynamic';
+import { MONACO_LANGUAGE_ID } from './starter-code';
 
 const MonacoEditor = dynamic(() => import('@monaco-editor/react'), {
   ssr: false,
@@ -33,7 +33,7 @@ export function CodeEditor({
   const { resolvedTheme } = useTheme();
 
   return (
-    <div className="h-full overflow-hidden rounded-md border">
+    <div className="overflow-hidden rounded-md border">
       <MonacoEditor
         height={height}
         language={MONACO_LANGUAGE_ID[language]}

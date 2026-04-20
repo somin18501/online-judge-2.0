@@ -96,6 +96,33 @@ export default async function ProblemDetailPage({ params }: Props): Promise<JSX.
               ))}
             </section>
           ) : null}
+
+          {problem.sampleTestCases.length > 0 ? (
+            <section className="space-y-3">
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                Sample test cases
+              </h2>
+              {problem.sampleTestCases.map((sample, i) => (
+                <div key={sample.id} className="rounded-md border bg-muted/30 p-3 text-sm">
+                  <p className="mb-2 text-xs font-medium">Sample {i + 1}</p>
+                  <div className="grid gap-2 md:grid-cols-2">
+                    <pre className="whitespace-pre-wrap rounded bg-background p-2 font-mono text-xs">
+                      <span className="block text-[10px] uppercase text-muted-foreground">
+                        Input
+                      </span>
+                      {sample.input || '(empty)'}
+                    </pre>
+                    <pre className="whitespace-pre-wrap rounded bg-background p-2 font-mono text-xs">
+                      <span className="block text-[10px] uppercase text-muted-foreground">
+                        Expected
+                      </span>
+                      {sample.expectedOutput}
+                    </pre>
+                  </div>
+                </div>
+              ))}
+            </section>
+          ) : null}
         </article>
 
         <ProblemWorkspace problem={problem} />
