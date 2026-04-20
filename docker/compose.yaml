@@ -1,0 +1,28 @@
+# docker compose for local Postgres-backed development.
+# The API itself is expected to run on the host (via `pnpm --filter @au/api dev`)
+# because it needs direct access to the host Docker socket to launch judge containers.
+#
+# Usage:
+#   docker compose -f docker/compose.yaml up -d
+#   DATABASE_URL=postgresql://au:au@localhost:5432/au pnpm --filter @au/api prisma:migrate
+#
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: au
+      POSTGRES_PASSWORD: au
+      POSTGRES_DB: au
+    ports:
+      - '5432:5432'
+    volumes:
+      - au-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U au -d au']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  au-postgres-data:

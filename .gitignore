@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.example
+!.env.development
+!.env.test
+!.env.production
+
+# Prisma
+apps/api/prisma/dev.db
+apps/api/prisma/dev.db-journal
+apps/api/prisma/*.db
+apps/api/prisma/**/*.db
+apps/api/prisma/**/*.db-journal
+apps/api/prisma/migrations/dev/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/*
+!.vscode/settings.example.json
+.idea/
+*.swp
+*.swo
+
+# Testing
+coverage/
+.nyc_output/
+
+# Docker / runners
+docker-runners/.cache/
+
+# Temp
+tmp/
+temp/
+.cache/

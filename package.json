@@ -1,0 +1,35 @@
+{
+  "name": "au-online-judge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Modern fullstack TypeScript online judge platform (Next.js + NestJS + Prisma + Docker).",
+  "packageManager": "pnpm@10.5.2",
+  "engines": {
+    "node": ">=20.10.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "types:build": "pnpm --filter @au/types run build",
+    "predev": "pnpm run types:build",
+    "dev": "pnpm -r --parallel --filter @au/types --filter @au/api --filter @au/web run dev",
+    "dev:api": "pnpm run types:build && pnpm -r --parallel --filter @au/types --filter @au/api run dev",
+    "dev:web": "pnpm run types:build && pnpm -r --parallel --filter @au/types --filter @au/web run dev",
+    "prebuild": "pnpm run types:build",
+    "build": "pnpm -r --filter @au/api --filter @au/web run build",
+    "start": "pnpm -r --parallel --filter=./apps/* run start",
+    "lint": "pnpm -r run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\" --ignore-path .prettierignore",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\" --ignore-path .prettierignore",
+    "test": "pnpm -r run test",
+    "typecheck": "pnpm -r run typecheck",
+    "db:generate": "pnpm --filter @au/api run prisma:generate",
+    "db:migrate": "pnpm --filter @au/api run prisma:migrate",
+    "db:seed": "pnpm --filter @au/api run prisma:seed",
+    "db:studio": "pnpm --filter @au/api run prisma:studio",
+    "clean": "pnpm -r exec rm -rf dist .next node_modules/.cache && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "prettier": "3.3.3",
+    "typescript": "5.6.3"
+  }
+}
