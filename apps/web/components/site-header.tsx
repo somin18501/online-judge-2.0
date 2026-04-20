@@ -1,13 +1,13 @@
 'use client';
 
-import Link from 'next/link';
-import { useRouter, usePathname } from 'next/navigation';
-import { Terminal, LogOut, LayoutDashboard } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { useAuthStore } from '@/store/auth-store';
+import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
+import { useAuthStore } from '@/store/auth-store';
+import { LayoutDashboard, LogOut, Terminal } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 
 export function SiteHeader(): JSX.Element {
   const router = useRouter();
@@ -43,7 +43,7 @@ export function SiteHeader(): JSX.Element {
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2 font-semibold">
             <Terminal className="h-5 w-5 text-primary" />
-            <span>AU Judge</span>
+            <span>Online Judge</span>
           </Link>
           <nav className="hidden items-center gap-6 md:flex">
             {navLink('/problems', 'Problems')}

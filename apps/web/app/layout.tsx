@@ -1,13 +1,13 @@
-import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
-import { serverFetch, ServerFetchError } from '@/lib/api/server';
+import { AuthBootstrap } from '@/components/auth-bootstrap';
+import { SiteFooter } from '@/components/site-footer';
+import { SiteHeader } from '@/components/site-header';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
-import { SiteHeader } from '@/components/site-header';
-import { SiteFooter } from '@/components/site-footer';
-import { AuthBootstrap } from '@/components/auth-bootstrap';
-import type { SessionResponse } from '@au/types';
 import { APP_URL } from '@/lib/api/config';
+import { serverFetch, ServerFetchError } from '@/lib/api/server';
+import type { SessionResponse } from '@au/types';
+import type { Metadata } from 'next';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
@@ -16,20 +16,20 @@ const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' }
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
   title: {
-    default: 'AU Online Judge',
-    template: '%s · AU Online Judge',
+    default: 'Online Judge',
+    template: '%s · Online Judge',
   },
   description:
     'Modern online judge platform for practicing coding problems in C, C++, Python, and JavaScript.',
   openGraph: {
-    title: 'AU Online Judge',
+    title: 'Online Judge',
     description:
       'Practice coding problems, run code against custom input, and submit solutions against hidden test cases.',
     type: 'website',
   },
   twitter: {
     card: 'summary',
-    title: 'AU Online Judge',
+    title: 'Online Judge',
   },
 };
 
@@ -55,7 +55,12 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${jetbrains.variable}`}>
       <body className="min-h-screen bg-background font-sans antialiased">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <AuthBootstrap initialUser={session.user} />
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
