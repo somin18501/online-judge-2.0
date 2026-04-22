@@ -6,7 +6,7 @@ import type { ToastProps } from './toast';
 const TOAST_LIMIT = 3;
 const TOAST_REMOVE_DELAY = 4000;
 
-type ToasterToast = ToastProps & {
+type ToasterToast = Omit<ToastProps, 'title' | 'description'> & {
   id: string;
   title?: React.ReactNode;
   description?: React.ReactNode;
