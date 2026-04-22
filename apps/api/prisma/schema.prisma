@@ -1,13 +1,13 @@
 // Prisma schema for the AU Online Judge platform.
-// Local dev: SQLite (file:./dev.db)
-// Production: PostgreSQL - switch `provider` and re-run migrations in a Postgres env.
+// Local dev: "sqlite" (file:./dev.db)
+// Production: "postgresql" - switch `provider` and re-run migrations in a Postgres env.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
